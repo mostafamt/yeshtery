@@ -1,0 +1,1040 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
+
+$yellow: #fff100;
+$primary: #542e90;
+$secondary: #fff200;
+//
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+////////////////////////////////
+/// SCROLLBAR
+////////////////////////////////
+/* Firefox */
+html {
+  scrollbar-color: $primary #ccc;
+  scrollbar-width: auto;
+}
+
+/* WebKit and Chromiums */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 2px;
+}
+////////////////////////////////
+/// GENERAL STYLE
+////////////////////////////////
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+////////////////////////////////
+/// Topbar COMPONENT
+////////////////////////////////
+.topbar {
+  background-color: #fff100;
+  &-content {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.3rem 0;
+    font-weight: 400;
+
+    &-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-grow: 2;
+      &-icon {
+        font-size: 1.6rem;
+      }
+      img {
+        height: 2rem;
+      }
+    }
+
+    &-offer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-grow: 1;
+
+      p {
+        text-transform: capitalize;
+
+        a {
+          text-decoration: underline;
+          color: #000;
+        }
+      }
+
+      svg {
+        font-size: 0.8rem;
+        transform: translateY(1px);
+      }
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+
+      li a {
+        display: flex;
+        gap: 0.3rem;
+        align-items: center;
+      }
+    }
+  }
+}
+
+/* Header COMPONENT */
+.header {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  padding: 0.5rem;
+
+  &-search {
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.5rem 0.5rem 0.2rem;
+    width: 30%;
+    flex-shrink: 0;
+    // margin-right: 20.5%;
+
+    button {
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+
+      svg {
+        font-size: 1.6rem;
+        margin-right: 0.5rem;
+        // stroke: #000;
+      }
+    }
+
+    input {
+      border: 0;
+      outline: none;
+      color: #000;
+      width: 100%;
+      font-weight: 500;
+      font-size: 1rem;
+
+      &::placeholder {
+        color: #000;
+        opacity: 1;
+      }
+    }
+  }
+
+  &-img {
+    margin-left: auto;
+    margin-right: 18.5%;
+    img {
+      height: 3rem;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+
+    li a {
+      text-decoration: none;
+      color: #000;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.3rem;
+      position: relative;
+
+      svg {
+        font-size: 1.4rem;
+      }
+
+      .counter {
+        width: 0.9rem;
+        height: 0.9rem;
+        font-size: 0.7rem;
+        background-color: $yellow;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        top: 0;
+        left: 25%;
+        transform: translateY(-8px);
+      }
+    }
+  }
+}
+
+/* Cart COMPONENT */
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  // font-size: 5rem;
+  background-color: #fff;
+  z-index: 101;
+  height: 100%;
+  // width: 0%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  transform: translateX(100%);
+  transition: transform 0.5s ease-out;
+  width: 30%;
+  // min-width: 25%;
+
+  &.active {
+    // width: 25%;
+    transform: translateX(0%);
+  }
+
+  .cart-content {
+    position: relative;
+    padding: 2rem 1rem;
+    &--close-button {
+      position: absolute;
+      top: 0%;
+      right: 5%;
+      background-color: transparent;
+      border: 0;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 1rem;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      &-photo {
+        height: 6rem;
+        border-radius: 5px;
+      }
+
+      &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        &--title {
+          font-weight: 500;
+        }
+        width: 100%;
+      }
+
+      &-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .item-remove button {
+          border: 0;
+          background-color: transparent;
+          background-color: $secondary;
+          font-weight: 600;
+          padding: 0.3rem 0.8rem;
+          border-radius: 0.9rem;
+          cursor: pointer;
+        }
+
+        .item-price {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 100%;
+          &-quantity {
+            font-size: 0.8rem;
+          }
+
+          &-value {
+            color: $primary;
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    .total {
+      margin: 1rem 0;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background-color: transparent;
+        border: 0;
+        width: 45%;
+        padding: 0.9rem 0.5rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .actions-review {
+        background-color: $secondary;
+      }
+
+      .actions-checkout {
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+  }
+
+  &-title {
+    color: $primary;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &-summary {
+    margin: 1rem 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+}
+
+////////////////////////////////
+/// Navbar Component
+////////////////////////////////
+nav {
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  padding: 1rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    li {
+      a {
+        text-decoration: none;
+        color: inherit;
+
+        &.active,
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+////////////////////////////////
+/// Breadcrumbs Component
+////////////////////////////////
+.breadcrumbs {
+  padding: 1.6rem;
+  border-bottom: 1px solid #bbb;
+  font-size: 1rem;
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      margin-right: 0.2rem;
+      a {
+        color: inherit;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      &:last-child a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+////////////////////////////////
+/// Main Component
+////////////////////////////////
+main {
+  .product {
+    display: flex;
+    // gap: 1rem;
+    padding: 3rem 0;
+    // justify-content: flex-start;
+    // align-items: center;
+  }
+  .product-show {
+    width: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    // flex-basis: 3;
+
+    .swiper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      img {
+        width: 15rem;
+        height: auto;
+        transition: display 0.3s;
+        border-radius: 5px;
+      }
+
+      .controls {
+        display: flex;
+        ul {
+          list-style: none;
+          display: flex;
+          gap: 0.5rem;
+          overflow: hidden;
+
+          li {
+            transition: transform 0.3s;
+            img {
+              height: auto;
+            }
+          }
+        }
+        button {
+          border: 0;
+          background-color: transparent;
+          cursor: pointer;
+          svg {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+  .product-info {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 4rem;
+
+    &-logo img {
+      height: 2.4rem;
+    }
+
+    .hr {
+      width: 100%;
+      height: 1px;
+      background-color: #dfdfdf;
+    }
+
+    .category {
+      font-size: 1.4rem;
+      color: #999;
+    }
+
+    .rate {
+      display: flex;
+      gap: 2rem;
+      font-size: 1.2rem;
+
+      svg {
+        fill: #ffb900;
+      }
+
+      &-value {
+        color: #999;
+      }
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      &-actual {
+        color: $primary;
+        font-size: 1.8rem;
+
+        span {
+          margin-left: 5px;
+          font-size: 1.2rem;
+        }
+      }
+
+      &-virtual {
+        color: #aaa;
+      }
+
+      &-discount {
+        background-color: $secondary;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+    }
+
+    .size {
+      display: flex;
+      flex-direction: column;
+      // gap: 1rem;
+      ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1rem;
+        color: $primary;
+
+        li.active {
+          color: #000;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgb(245, 245, 245);
+        }
+      }
+    }
+
+    .color {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+
+        li a img {
+          height: 5rem;
+          width: 5rem;
+          border-radius: 50%;
+          object-fit: contain;
+
+          &.active {
+            border: 2px solid $primary;
+          }
+        }
+      }
+    }
+
+    .quantity {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .controls {
+        display: flex;
+        align-items: center;
+        background-color: #eee;
+        color: $primary;
+        width: 47%;
+        justify-content: space-between;
+        padding: 0.3rem 0.3rem;
+        border-radius: 2rem;
+        font-size: 1.4rem;
+
+        button {
+          height: 2.5rem;
+          width: 2.5rem;
+          border-radius: 50%;
+          border: 0;
+          background-color: $secondary;
+          font-size: 1.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          svg {
+            fill: #000;
+            stroke: #000;
+          }
+        }
+      }
+      .actions {
+        display: flex;
+        // gap: auto;
+        justify-content: space-between;
+        width: 100%;
+        // padding: 0.3rem auto;
+
+        button {
+          width: 47%;
+          padding: 1rem 2rem;
+          border: 0;
+          border-radius: 2rem;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        &-cart {
+          color: #fff;
+          background-color: $primary;
+          // margin-right: auto;
+        }
+        &-store {
+          background-color: $secondary;
+        }
+      }
+    }
+  }
+}
+
+////////////////////////////////
+/// Products Component
+////////////////////////////////
+.products {
+  margin-bottom: 3rem;
+  width: 100%;
+
+  &-text {
+    margin: 1rem 0;
+  }
+
+  &-title {
+    font-size: 1.7rem;
+    color: $primary;
+    font-weight: 600;
+  }
+
+  &-description {
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+
+  .list {
+    list-style: none;
+    display: flex;
+    gap: 4%;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 0 0 2rem;
+  }
+}
+
+////////////////////////////////
+/// Card Component
+////////////////////////////////
+.card {
+  color: #000;
+  flex: 0 0 22%;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+  padding: 0.4rem;
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+////////////////////////////////
+/// CardHeader COMPONENT
+////////////////////////////////
+.card-header {
+  padding: 0;
+  margin: 0;
+  img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+  }
+}
+
+////////////////////////////////
+/// CardDetails COMPONENT
+////////////////////////////////
+.card-details {
+  padding: 0 0.5rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  & .card-info {
+    display: flex;
+    justify-content: space-between;
+
+    &-details-price {
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+
+      .actual {
+        color: $primary;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      &-discount {
+        display: flex;
+        gap: 1rem;
+
+        & .price {
+          color: #555;
+          font-weight: 600;
+        }
+
+        & .percentage {
+          background-color: $secondary;
+          padding: 3px 0.5rem;
+          border-radius: 5px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+      }
+    }
+
+    &-details-category img {
+      width: 3rem;
+    }
+  }
+
+  .card-rate {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+
+    .star {
+      svg {
+        fill: #ffb900;
+        // stroke: $secondary;
+      }
+    }
+  }
+
+  .card-pickup {
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+}
+
+////////////////////////////////
+/// Footer COMPONENT
+////////////////////////////////
+footer {
+  background-color: #555;
+  color: #fff;
+  font-weight: 600;
+  .footer {
+    .content {
+      padding: 2rem 1rem 1rem 0;
+      display: flex;
+      justify-content: space-between;
+
+      .content-left,
+      .content-right {
+        flex: 0 0 49%;
+      }
+
+      .vl {
+        width: 1px;
+        background-color: #666;
+        // height: 100%;
+      }
+
+      .content-left {
+        img {
+          height: 3rem;
+          align-self: flex-start;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .content-right {
+        padding-left: 2rem;
+
+        .form {
+          margin: 1rem 0 1.6rem;
+          position: relative;
+
+          input {
+            width: 100%;
+            height: 3rem;
+            border-radius: 2rem;
+            border: 0;
+            padding-left: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: $primary;
+
+            &::placeholder {
+              color: inherit;
+              font-size: inherit;
+              font-weight: inherit;
+              opacity: 1;
+            }
+
+            &:focus {
+              outline: 0;
+            }
+          }
+          button {
+            position: absolute;
+            right: 1%;
+            top: 0.2rem;
+            height: 2.6rem;
+            border: 0;
+            border-radius: 1.8rem;
+            padding: 0 1rem;
+            font-weight: inherit;
+            background-color: $secondary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            gap: 0.5rem;
+
+            svg {
+              font-size: 1.4rem;
+              stroke: #000;
+              // fill: blue;
+            }
+          }
+        }
+
+        .links {
+          display: flex;
+          justify-content: space-between;
+          // gap: 0.5rem;
+
+          &-left {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 0 0 65%;
+            li {
+              a {
+                text-decoration: none;
+                color: inherit;
+              }
+            }
+          }
+
+          &-right {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            li {
+              a {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: inherit;
+                text-decoration: none;
+                img {
+                  height: 2rem;
+                }
+              }
+              &:last-child {
+                img {
+                  border-radius: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .hr {
+    width: 100%;
+    height: 1px;
+    background-color: #666;
+  }
+  .tail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    .copyrights {
+      flex: 0 0 35%;
+    }
+
+    .payments {
+      display: flex;
+      gap: 0.5rem;
+      img {
+        height: 2rem;
+      }
+    }
+
+    .powered {
+      display: flex;
+      gap: 0.2rem;
+      img {
+        height: 1rem;
+      }
+    }
+  }
+}
+////////////////////////////////
+/// LOADER
+////////////////////////////////
+$full-size: 16rem;
+$half-size: 8rem;
+.loader {
+  width: $full-size;
+  height: $full-size;
+  display: inline-block;
+  position: relative;
+  transform: rotate(45deg);
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  width: $half-size;
+  height: $half-size;
+  position: absolute;
+  left: 0;
+  top: -$half-size;
+  animation: animloader 4s ease infinite;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $half-size;
+  height: $half-size;
+  background: rgba($primary, 0.85);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  animation: animloader2 2s ease infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 0 $half-size rgba(255, 255, 255, 0),
+      $half-size $half-size rgba(255, 255, 255, 0),
+      $half-size $full-size rgba(255, 255, 255, 0),
+      0px $full-size rgba(255, 255, 255, 0);
+  }
+  12% {
+    box-shadow: 0 $half-size white, $half-size $half-size rgba(255, 255, 255, 0),
+      $half-size $full-size rgba(255, 255, 255, 0),
+      0px $full-size rgba(255, 255, 255, 0);
+  }
+  25% {
+    box-shadow: 0 $half-size white, $half-size $half-size white,
+      $half-size $full-size rgba(255, 255, 255, 0),
+      0px $full-size rgba(255, 255, 255, 0);
+  }
+  37% {
+    box-shadow: 0 $half-size white, $half-size $half-size white,
+      $half-size $full-size white, 0px $full-size rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 $half-size white, $half-size $half-size white,
+      $half-size $full-size white, 0px $full-size white;
+  }
+  62% {
+    box-shadow: 0 $half-size rgba(255, 255, 255, 0), $half-size $half-size white,
+      $half-size $full-size white, 0px $full-size white;
+  }
+  75% {
+    box-shadow: 0 $half-size rgba(255, 255, 255, 0),
+      $half-size $half-size rgba(255, 255, 255, 0), $half-size $full-size white,
+      0px $full-size white;
+  }
+  87% {
+    box-shadow: 0 $half-size rgba(255, 255, 255, 0),
+      $half-size $half-size rgba(255, 255, 255, 0),
+      $half-size $full-size rgba(255, 255, 255, 0), 0px $full-size white;
+  }
+  100% {
+    box-shadow: 0 $half-size rgba(255, 255, 255, 0),
+      $half-size $half-size rgba(255, 255, 255, 0),
+      $half-size $full-size rgba(255, 255, 255, 0),
+      0px $full-size rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes animloader2 {
+  0% {
+    transform: translate(0, 0) rotateX(0) rotateY(0);
+  }
+  25% {
+    transform: translate(100%, 0) rotateX(0) rotateY(180deg);
+  }
+  50% {
+    transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg);
+  }
+  75% {
+    transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg);
+  }
+  100% {
+    transform: translate(0, 0) rotateX(0) rotateY(360deg);
+  }
+}
