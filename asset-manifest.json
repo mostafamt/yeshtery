@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.61f88da9.css",
-    "main.js": "/static/js/main.9246412a.js",
-    "index.html": "/index.html",
-    "main.61f88da9.css.map": "/static/css/main.61f88da9.css.map",
-    "main.9246412a.js.map": "/static/js/main.9246412a.js.map"
+    "main.css": "/yeshtery/static/css/main.61f88da9.css",
+    "main.js": "/yeshtery/static/js/main.9246412a.js",
+    "index.html": "/yeshtery/index.html",
+    "main.61f88da9.css.map": "/yeshtery/static/css/main.61f88da9.css.map",
+    "main.9246412a.js.map": "/yeshtery/static/js/main.9246412a.js.map"
   },
   "entrypoints": [
     "static/css/main.61f88da9.css",
